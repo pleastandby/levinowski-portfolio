@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1080 1076.3">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#linear-gradient);
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5 {
+        stroke-width: 0px;
+      }
+
+      .cls-2 {
+        fill: url(#linear-gradient-2);
+      }
+
+      .cls-3 {
+        fill: url(#linear-gradient-3);
+      }
+
+      .cls-4 {
+        fill: url(#radial-gradient);
+      }
+
+      .cls-6 {
+        fill: #612800;
+        font-family: Poppins-Bold, Poppins;
+        font-size: 145.1px;
+        font-weight: 700;
+      }
+
+      .cls-5 {
+        fill: url(#linear-gradient-4);
+      }
+    </style>
+    <radialGradient id="radial-gradient" cx="540" cy="538.15" fx="135.32" fy="292.23" r="1372.29" gradientUnits="userSpaceOnUse">
+      <stop offset=".55" stop-color="#e0e0d9"/>
+      <stop offset="1" stop-color="#adc9ff"/>
+    </radialGradient>
+    <linearGradient id="linear-gradient" x1="395.53" y1="563.66" x2="155.17" y2="393.37" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffa915"/>
+      <stop offset="1" stop-color="#f60"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="385.73" y1="576.13" x2="287.74" y2="661.33" gradientUnits="userSpaceOnUse">
+      <stop offset=".03" stop-color="#e92700"/>
+      <stop offset="1" stop-color="#e98a00"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="725.77" y1="493.08" x2="82.37" y2="433.85" gradientUnits="userSpaceOnUse">
+      <stop offset=".03" stop-color="#e0e0d9"/>
+      <stop offset="1" stop-color="#f60"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="711.16" y1="651.85" x2="67.75" y2="592.62" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#e0e0d9"/>
+      <stop offset="1" stop-color="#ff9f15"/>
+    </linearGradient>
+  </defs>
+  <g id="Layer_3" data-name="Layer 3">
+    <rect class="cls-4" width="1080" height="1076.3"/>
+  </g>
+  <g id="Layer_5" data-name="Layer 5">
+    <g>
+      <polyline class="cls-1" points="400.63 564.83 265.03 564.83 196.08 383.27 273.07 383.27 400.63 487.84"/>
+      <path class="cls-2" d="m400.63,572.3c-2.19,1.82-86.44,0-86.44,0l-43.4,32.46,44.5,88.27,67.11-42.67,18.24-51.79"/>
+    </g>
+    <g>
+      <polyline class="cls-3" points="416.82 564.83 552.42 564.83 621.36 383.27 544.37 383.27 416.82 487.84"/>
+      <path class="cls-5" d="m416.82,572.3c2.19,1.82,86.44,0,86.44,0l43.4,32.46-44.5,88.27-67.11-42.67-18.24-51.79"/>
+    </g>
+    <text class="cls-6" transform="translate(408.74 592.66)"><tspan x="0" y="0">Levin</tspan></text>
+  </g>
+</svg>
