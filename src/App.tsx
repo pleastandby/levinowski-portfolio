@@ -1,5 +1,46 @@
-import { motion, type Variants } from 'framer-motion';
+import { motion, type Variants, useScroll, useTransform } from 'framer-motion';
+import { useRef } from 'react';
 import { Play, ArrowUpRight, Instagram, Twitter, Linkedin, ChevronDown } from 'lucide-react';
+
+const HorizontalProject = ({ project }: { project: any }) => {
+  const targetRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: targetRef,
+    offset: ["start start", "end end"]
+  });
+
+  const x = useTransform(scrollYProgress, [0, 1], ["calc(0% + 0vw)", "calc(-100% + 100vw)"]);
+
+  return (
+    <div ref={targetRef} className="relative h-[400vh] -mx-6 md:-mx-24">
+      <div className="sticky top-0 flex h-screen items-center overflow-hidden">
+        <motion.div style={{ x }} className="flex gap-6 w-max px-6 md:px-24">
+          {project.vimeoIds.map((vimeoId: string, index: number) => (
+            <div key={index} className="w-[85vw] md:w-[70vw] shrink-0 group cursor-pointer">
+              <div className="relative aspect-video rounded-3xl overflow-hidden bg-neutral-900 border border-white/5 transition-transform duration-700 group-hover:scale-[0.98]">
+                <iframe
+                  src={`https://player.vimeo.com/video/${vimeoId}?autoplay=${['1164008481', '1164008557', '1164008644'].includes(vimeoId) ? '1&muted=1&autopause=0' : '0'}&loop=1&byline=0&title=0`}
+                  className="w-full h-full object-cover pointer-events-auto scale-100 transition-transform duration-1000"
+                  frameBorder="0"
+                  allow="autoplay; fullscreen; picture-in-picture"
+                />
+              </div>
+              <div className="mt-8 flex justify-between items-start">
+                <div>
+                  <span className="text-[10px] font-mono text-neutral-500 uppercase tracking-widest">{project.category}</span>
+                  <h4 className="text-3xl mt-2 font-light group-hover:italic transition-all">
+                    {project.title} <span className="text-neutral-500 text-sm not-italic ml-2">({index + 1}/{project.vimeoIds.length})</span>
+                  </h4>
+                </div>
+                <ArrowUpRight className="opacity-0 group-hover:opacity-100 transition-opacity" />
+              </div>
+            </div>
+          ))}
+        </motion.div>
+      </div>
+    </div>
+  );
+};
 
 const App = () => {
 
@@ -16,19 +57,25 @@ const App = () => {
       id: '01',
       title: 'Official Showreel',
       category: 'Motion Design / Direction',
-      vimeoId: '1163626468',
+      vimeoIds: ['1163626468'],
     },
     {
       id: '02',
       title: 'SaaS Explainer Videos',
       category: 'Product / Marketing Motion',
-      vimeoId: '1163625684',
+      vimeoIds: [
+        '1163625684',
+        '1164008481',
+        '1164008557',
+        '1164008644',
+        '1175866002'
+      ],
     },
     {
       id: '03',
       title: 'Visual Storytelling',
       category: 'Experimental / 2D',
-      vimeoId: '1143922128',
+      vimeoIds: ['1143922128'],
     }
   ];
 
@@ -132,32 +179,37 @@ const App = () => {
         </motion.div>
 
         <div className="space-y-40">
-          {projects.map((project) => (
-            <motion.div
-              key={project.id}
-              initial={{ y: 100, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8 }}
-              className="group cursor-pointer"
-            >
-              <div className="relative aspect-video rounded-3xl overflow-hidden bg-neutral-900 border border-white/5 transition-transform duration-700 group-hover:scale-[0.98]">
-                <iframe
-                  src={`https://player.vimeo.com/video/${project.vimeoId}?autoplay=0&loop=1&byline=0&title=0`}
-                  className="w-full h-full object-cover scale-100 transition-transform duration-1000"
-                  frameBorder="0"
-                  allow="autoplay; fullscreen; picture-in-picture"
-                />
-              </div>
-              <div className="mt-8 flex justify-between items-start">
-                <div>
-                  <span className="text-[10px] font-mono text-neutral-500 uppercase tracking-widest">{project.category}</span>
-                  <h4 className="text-3xl mt-2 font-light group-hover:italic transition-all">{project.title}</h4>
+          {projects.map((project) => {
+            if (project.vimeoIds.length > 1) {
+              return <HorizontalProject key={project.id} project={project} />;
+            }
+            return (
+              <motion.div
+                key={project.id}
+                initial={{ y: 100, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8 }}
+                className="group cursor-pointer"
+              >
+                <div className="relative aspect-video rounded-3xl overflow-hidden bg-neutral-900 border border-white/5 transition-transform duration-700 group-hover:scale-[0.98]">
+                  <iframe
+                    src={`https://player.vimeo.com/video/${project.vimeoIds[0]}?autoplay=0&loop=1&byline=0&title=0`}
+                    className="w-full h-full object-cover scale-100 transition-transform duration-1000"
+                    frameBorder="0"
+                    allow="autoplay; fullscreen; picture-in-picture"
+                  />
                 </div>
-                <ArrowUpRight className="opacity-0 group-hover:opacity-100 transition-opacity" />
-              </div>
-            </motion.div>
-          ))}
+                <div className="mt-8 flex justify-between items-start">
+                  <div>
+                    <span className="text-[10px] font-mono text-neutral-500 uppercase tracking-widest">{project.category}</span>
+                    <h4 className="text-3xl mt-2 font-light group-hover:italic transition-all">{project.title}</h4>
+                  </div>
+                  <ArrowUpRight className="opacity-0 group-hover:opacity-100 transition-opacity" />
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       </section>
 
